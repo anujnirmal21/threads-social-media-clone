@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",               // Use the new JSX Transform
+    "target": "ES6",                  // Specifies the target ECMAScript version (ES6)
+    "module": "commonjs",             // Specifies the module system to use (CommonJS for Node.js)
+    "checkJs": true,                  // Enable type checking in JavaScript files
+    "allowSyntheticDefaultImports": true // Allows default imports from modules with no default export
+  },
+  "exclude": [
+    "node_modules",                   // Exclude the "node_modules" directory
+    "**/node_modules/*"               // Exclude any nested "node_modules" directories
+  ]
+}
