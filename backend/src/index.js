@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import app from "./app.js";
-import connectDB from "./db/connectDB.js";
 import { v2 as cloudinary } from "cloudinary";
+import mongoose from "mongoose";
 
 //config environment variable
 dotenv.config({
@@ -17,6 +17,18 @@ cloudinary.config({
 });
 
 //DB connection
+const connectDB = async () => {
+  try {
+    const MONGODB_URI = process.env.MONGODB_URI;
+    const dbRes = await mongoose.connect(MONGODB_URI);
+
+    console.log(`MongoDB Connected with DB Host : ${dbRes.connection.host}`);
+  } catch (error) {
+    console.log(`Error :${error.message}`);
+    process.exit(1);
+  }
+};
+
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
