@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import app from "./app.js";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
+import path from "path";
+import express from "express";
 
 //config environment variable
 dotenv.config({
@@ -9,6 +11,7 @@ dotenv.config({
 });
 
 const PORT = process.env.PORT || 5000;
+const _dir = path.resolve();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -28,6 +31,13 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(_dir, "/frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(_dir, "frontend", "dist", "index.html"));
+  });
+}
 
 connectDB()
   .then(() => {
