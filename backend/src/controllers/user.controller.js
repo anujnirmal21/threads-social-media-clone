@@ -261,6 +261,26 @@ const getUserProfile = asynchandler(async (req, res) => {
     .json(new ApiResponse(200, user, "User fetched successfully"));
 });
 
+const searchUserProfile = asynchandler(async (req, res) => {
+  const { query } = req.params;
+
+  if (query || query !== "") {
+    const result = { username: { $regex: `^${query}`, $options: "i" } };
+    const userProfiles = await User.find(result);
+
+    if (!userProfiles || userProfiles.length === 0) {
+      return res
+        .status(400)
+        .json(
+          new ApiResponse(400, "", "No such user with the specified username")
+        );
+    }
+    return res
+      .status(200)
+      .json(new ApiResponse(200, userProfiles, "searched successfull..."));
+  }
+});
+
 export {
   userSignup,
   userLogin,
@@ -268,4 +288,5 @@ export {
   userFollowAndUnFollow,
   userUpdate,
   getUserProfile,
+  searchUserProfile,
 };

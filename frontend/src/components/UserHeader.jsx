@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { VStack, Box, Flex, Avatar, Text, Link } from "@chakra-ui/react";
 import {
   Menu,

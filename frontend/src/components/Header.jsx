@@ -6,6 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 import { HiOutlineLogout } from "react-icons/hi";
 import useLogout from "../hooks/useLogout";
+import { FaSearch } from "react-icons/fa";
 
 export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -15,9 +16,14 @@ export default function Header() {
   return (
     <Flex justifyContent={user ? "space-between" : "center"} mt={6} mb={12}>
       {user && (
-        <Link as={RouterLink} to="/">
-          <AiFillHome size={24} />
-        </Link>
+        <Flex alignItems={"center"} gap={10}>
+          <Link as={RouterLink} to="/">
+            <AiFillHome size={24} />
+          </Link>
+          <Link as={RouterLink} to="/search">
+            <FaSearch size={20} />
+          </Link>
+        </Flex>
       )}
       <Image
         cursor={"pointer"}
@@ -27,7 +33,7 @@ export default function Header() {
         onClick={toggleColorMode}
       />
       {user && (
-        <Flex alignItems={"center"} gap={4}>
+        <Flex alignItems={"center"} gap={6}>
           <Link as={RouterLink} to={`/${user.username}`}>
             <RxAvatar size={24} />
           </Link>
