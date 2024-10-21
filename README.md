@@ -19,6 +19,7 @@ A social media application clone that allows users to create, delete, like, and 
 
 - **User Profile**
   - Update profile information (name, bio, profile picture)
+  - Search User
 
 ## Tech Stack
 
