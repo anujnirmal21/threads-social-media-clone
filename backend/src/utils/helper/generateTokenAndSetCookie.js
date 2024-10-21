@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const generateTokenAndSetCookie = (userId, res) => {
   const token = jwt.sign({ userId }, process.env.JWT_Secret, {
-    expiresIn: "10d",
+    expiresIn: "100d",
   });
 
   res.cookie("accessToken", token, {

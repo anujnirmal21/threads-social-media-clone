@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
 

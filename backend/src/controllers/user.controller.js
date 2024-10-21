@@ -222,6 +222,7 @@ const userUpdate = asynchandler(async (req, res) => {
     {
       $set: {
         "replies.$[item].username": user.username,
+        // @ts-ignore
         "replies.$[item].userProfilePic": user.profilePic,
       },
     },
