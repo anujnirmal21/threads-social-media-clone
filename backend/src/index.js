@@ -23,7 +23,7 @@ cloudinary.config({
 const connectDB = async () => {
   try {
     const MONGODB_URI = process.env.MONGODB_URI;
-    const dbRes = await mongoose.connect(MONGODB_URI);
+    const dbRes = await mongoose.connect(" mongodb+srv://anuj:anuj123@threads-cluster.vpbb5vh.mongodb.net/threads?retryWrites=true&w=majority&appName=threads-cluster");
 
     console.log(`MongoDB Connected with DB Host : ${dbRes.connection.host}`);
   } catch (error) {
