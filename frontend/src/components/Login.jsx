@@ -129,6 +129,11 @@ export default function Login({ setAuthToggle, authToggle }) {
             </Stack>
           </Stack>
         </Box>
+        <Stack pt={6} align={"center"} fontSize={"2xl"}>
+          <Text>Demo Credentials</Text>
+          <Text>Username: anuj</Text>
+          <Text>Password: 123456</Text>
+        </Stack>
       </Stack>
     </Flex>
   );
