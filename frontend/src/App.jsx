@@ -9,6 +9,7 @@ import { useRecoilValue } from "recoil";
 import { userAtom } from "./atoms/userAtom";
 import ProfileUpdatePage from "./pages/ProfileUpdatePage";
 import UserSearchPage from "./pages/UserSearchPage";
+import ProtectedRoute from "./components/ProtectRoute";
 
 const App = () => {
   const user = useRecoilValue(userAtom);
@@ -19,21 +20,51 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={user ? <HomePage /> : <Navigate to="/auth" />}
-        ></Route>
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/auth"
           element={!user ? <AuthPage /> : <Navigate to="/" />}
-        ></Route>
+        />
         <Route
           path="/update"
-          element={user ? <ProfileUpdatePage /> : <Navigate to="/auth" />}
-        ></Route>
-        <Route path="/:username" element={<UserPage />}></Route>
-        <Route path="/search" element={<UserSearchPage />}></Route>
-        <Route path="/:username/post/:pid" element={<PostPage />}></Route>
+          element={
+            <ProtectedRoute>
+              <ProfileUpdatePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <ProtectedRoute>
+              <UserSearchPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/:username"
+          element={
+            <ProtectedRoute>
+              <UserPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/:username/post/:pid"
+          element={
+            <ProtectedRoute>
+              <PostPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Container>
   );
 };
+
 export default App;
